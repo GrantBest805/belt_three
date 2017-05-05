@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <h4>Hello {{request.session.user_first_name}}!</h4>
+    <a href="{% url 'logout' %}">Logout</a>
+
+    <h4>Todays Appointments, {{ time }}:</h4>
+
+    <table style="width:75%">
+
+      <tr>
+        <th>Tasks</th>
+        <th>Time</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    {% for app in appointments %}
+      <tr>
+        <td>{{ app.task }}</td>
+        <td>{{ app.time }}</td>
+        <td>{{ app.status }}</td>
+        <td><a href="/{{ app.id }}/edit">Edit</a>   <a href="/{{ app.id }}/delete">Delete</a></td>
+    {% endfor %}
+      </tr>
+    </table>
+    <h4>Rest of my Appointments:</h4>
+    <table style="width:55%">
+    <tr>
+        <th>Tasks</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+        {% for a in other %}
+      <tr>
+        <td>{{ a.task }}</td>
+        <td>{{ a.date }}</td>
+        <td>{{ a.time }}</td>
+      </tr>
+        {% endfor %}
+
+    </table>
+
+    <h4>Add Appointment</h4>
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        <label for="date">
+            Date:
+            <input type="date" name="date">
+        </label>
+        <br>
+       <label for="time">
+            Time:
+            <input type="time" name="time">
+        </label>
+        <br>
+        <label for="task">
+            Tasks:
+            <input type="text" name="task">
+        </label>
+        <br>
+        <input type="submit" name="submit" value="Add">
+
+    </form>
+
+
+        <ul class="messeges">
+            {% for message in messages %}
+                <li>
+                {{message}}
+                </li>
+            {% endfor %}
+        </ul>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOJO SECRETS</title>
+</head>
+<body>
+    <style>
+        lable {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    </style>
+        <ul class="messeges">
+            {% for message in messages %}
+                <li>
+                {{message}}
+                </li>
+            {% endfor %}
+        </ul>
+
+
+
+
+    <form action="/register" method="POST">
+        <h2>Register</h2> {% csrf_token %}
+        <lable for="first_name">
+            First Name
+            <input type="text" name="first_name">
+        </lable>
+        <lable for="last_name">
+            Last Name
+            <input type="text" name="last_name">
+        </lable>
+        <lable for="email">
+            Email
+            <input type="email" name="email">
+        </lable>
+        <lable for="password">
+            Password
+            <input type="password" name="password">
+        </lable>
+        <lable for="confirm">
+            Confirm Password
+            <input type="password" name="confirm">
+        </lable>
+        <label for="dob">
+            DOB
+        <input type="date" name="dob" value="">
+      </label>
+        <button>Register</button>
+    </form>
+    <form action="/login" method="POST">
+        <h2>Login</h2> {% csrf_token %}
+        <lable for="email">
+            Email
+            <input type="email" name="email">
+        </lable>
+        <lable for="password">
+            Password
+            <input type="password" name="password">
+        </lable>
+        <button>Login</button>
+    </form>
+</body>
+</html>

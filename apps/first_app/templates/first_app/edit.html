@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="{% url 'logout' %}">Logout</a>
+<a href="{% url 'show' %}">Dashboard</a>
+     <form action="{% url 'edit' %}" method="post">
+        {% csrf_token %}
+         <label for="task">
+            Tasks:
+            <input type="text" name="task" value="{{ app_edit.task }}">
+        </label>
+        <br>
+         <select name="status">
+            <option value="Pending">Pending</option>
+            <option value="done">Done</option>
+            <option value="missing">Missing</option>
+          </select>
+         <br>
+         <label for="date">
+            Date:
+            <input type="date" name="date" value="{{ app_edit.date }}">
+        </label>
+         <br>
+         <label for="time">
+            Time:
+            <input type="time" name="time" value="{{ app_edit.time }}">
+        </label>
+        <br>
+
+        <input type="submit" name="submit" value="Update">
+
+    </form>
+
+
+</body>
+</html>
